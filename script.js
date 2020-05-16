@@ -346,10 +346,14 @@ function updateMouse(e, eventName) { // Modified from p5.js
 // 	cb(e);
 // }));
 
-canvas.addEventListener('mouseenter',  e => (updateMouse(e, 'mouseenter'), mouseIn = true));
+canvas.addEventListener('mouseenter', e => (updateMouse(e, 'mouseenter'), mouseIn = true), {passive: true});
+canvas.addEventListener('mouseup', e => (updateMouse(e, 'mouseup'), mouseDown = false), {passive: true});
+
+
+// canvas.addEventListener('mouseenter',  e => (updateMouse(e, 'mouseenter'), mouseIn = true));
 canvas.addEventListener('mouseleave',  e => (updateMouse(e, 'mouseleave'), mouseIn = false, mouseDown = false));
 canvas.addEventListener('mousemove',   e => (updateMouse(e, 'mousemove'), mouseIn = true, mouseMove = e.timeStamp));
-canvas.addEventListener('mousedown',   e => (updateMouse(e, 'mousedown'), mouseIn = true, mouseDown = true));
+// canvas.addEventListener('mousedown',   e => (updateMouse(e, 'mousedown'), mouseIn = true, mouseDown = true));
 canvas.addEventListener('mouseup',     e => (updateMouse(e, 'mouseup'), mouseDown = false));
 canvas.addEventListener('touchstart',  e => (updateMouse(e, 'touchstart'), mouseIn = true));
 canvas.addEventListener('touchend',    e => (updateMouse(e, 'touchend'), mouseIn = false, mouseDown = false));
